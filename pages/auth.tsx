@@ -79,7 +79,7 @@ const Auth = () => {
           <Image
             height={"12"}
             width={"200"}
-            className="w-auto h-auto"
+            className="w-auto md:h-auto h-[27px]"
             src="/images/logo.png"
             alt="logo"
             priority={true}
