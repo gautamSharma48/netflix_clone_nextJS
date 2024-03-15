@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
 import prismadb from "@/lib/prismadb";
-import { PrismaClientKnownRequestError } from "@/lib/prisma";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -31,9 +31,6 @@ export default async function handler(
     });
     return res.status(200).json({ user });
   } catch (error: any) {
-    if (error instanceof PrismaClientKnownRequestError) {
-      res.status(422).json({ error: error.message });
-    }
     console.log(error);
     return res.status(400).end();
   }
