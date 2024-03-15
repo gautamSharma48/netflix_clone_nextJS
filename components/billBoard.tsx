@@ -34,11 +34,10 @@ const BillBoard = () => {
             <button
               onClick={handleOpenModal}
               className="bg-white
-             text-white bg-opacity-30 rounded-md py-1
-              md:py-2px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold 
+             text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold 
               flex flex-row items-center hover:bg-opacity-20 transition"
             >
-              <AiOutlineInfoCircle className="mr-1" /> More Info
+              <AiOutlineInfoCircle className="mr-1" size={25} /> More Info
             </button>
           </div>
         </div>

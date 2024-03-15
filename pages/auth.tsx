@@ -73,19 +73,19 @@ const Auth = () => {
   }, [loginHandler, registerHandler, variant]);
 
   return (
-    <div className="relative h-full w-full lg:bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+    <div className="relative h-full w-full lg:bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover ">
       <div className="bg-black w-full h-full pb-5 lg:bg-opacity-50">
-        <nav className="px-12 py-5 sticky top-0 bg-black lg:bg-transparent z-50">
+        <nav className="px-12 py-5 sticky top-0 lg:fixed bg-black lg:bg-transparent z-50">
           <Image
             height={"12"}
-            width={"200"}
+            width={"180"}
             className="w-auto md:h-auto h-[27px]"
             src="/images/logo.png"
             alt="logo"
             priority={true}
           />
         </nav>
-        <div className="flex justify-center">
+        <div className="flex justify-center my-auto h-full bg-black lg:bg-transparent">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h1 className="text-white text-4xl mb-8 font-semibold">
               {checkRender(
