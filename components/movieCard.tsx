@@ -14,9 +14,16 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
   return (
-    <div className="group bg-zinc-900 col-span relative h-[12vw]">
+    <div
+      onClick={() => {
+        if (window.matchMedia("(max-width: 768px)").matches) {
+          return openModal(data?.id);
+        }
+      }}
+      className="group bg-zinc-900 col-span relative  lg:h-[12vw]"
+    >
       <img
-        className="cursor-pointer object-cover transition duration shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[12vw]"
+        className="cursor-pointer object-cover transition duration shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[100px] lg:h-[12vw]"
         src={data?.thumbnailUrl}
         alt="movie"
       />
