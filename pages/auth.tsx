@@ -43,12 +43,14 @@ const Auth = () => {
       await signIn("credentials", {
         email,
         password,
+        redirect: false,
         callbackUrl: "/profiles",
       });
+      router.push("/profiles");
     } catch (error) {
       console.log(error);
     }
-  }, [state]);
+  }, [router, state]);
 
   const registerHandler = useCallback(async () => {
     try {
