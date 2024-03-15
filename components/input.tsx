@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 interface InputProps {
   id: string;
@@ -8,14 +10,17 @@ interface InputProps {
   type: string;
 }
 const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const EyeIcon = showPassword ? FaRegEye : FaRegEyeSlash;
   return (
-    <div className="relative">
+    <div className="relative ">
       <input
         autoComplete="off"
         id={id}
         onChange={onChange}
         value={value}
-        type={type}
+        type={type === "password" ? (showPassword ? "text" : "password") : type}
         placeholder=""
         className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 apperance-none focus:outline-none focus:ring-0 peer"
       />
@@ -34,6 +39,14 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
       >
         {label}
       </label>
+      {type === "password" && (
+        <div
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="transition duration-75 absolute right-3 top-4 cursor-pointer"
+        >
+          <EyeIcon className="text-white" size={20} />
+        </div>
+      )}
     </div>
   );
 };
