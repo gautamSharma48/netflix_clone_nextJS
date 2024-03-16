@@ -4,9 +4,11 @@ import NavbarItems from "./navbarItems";
 import { BsBell, BsChevronDown, BsSearch } from "react-icons/bs";
 import MobileMenu from "./mobileMenu";
 import AccountMenu from "./accountMenu";
+import { useRouter } from "next/router";
 const Top_Offset = 66;
 
 const Navbar = () => {
+  const router = useRouter();
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showAccountMenu, setAccountMenu] = useState(false);
   const [ShowBackground, SetShowBackground] = useState(false);
@@ -26,9 +28,13 @@ const Navbar = () => {
     };
   }, []);
 
-  const navigate = useCallback((to: string, blank: boolean) => {
-    if (blank) window.location.href = to;
-  }, []);
+  const navigate = useCallback(
+    (to: string, blank: boolean) => {
+      if (blank) return (window.location.href = to);
+      router.push("/");
+    },
+    [router]
+  );
   return (
     <nav className="w-full fixed z-40 text-white">
       <div
@@ -38,12 +44,15 @@ const Navbar = () => {
       >
         <img src="/images/logo.png" className="h-4 lg:h-7" alt="logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItems label="Home" onClick={() => navigate("/#movie", true)} />
+          <NavbarItems label="Home" onClick={() => navigate("/", false)} />
           <NavbarItems
             label="Series"
             onClick={() => navigate("/#series", true)}
           />
-          <NavbarItems label="Films" />
+          <NavbarItems
+            label="Films"
+            onClick={() => navigate("/#movie", true)}
+          />
           <NavbarItems label="New & Popular" />
           <NavbarItems label="My List" />
           <NavbarItems label="Browse by language" />
