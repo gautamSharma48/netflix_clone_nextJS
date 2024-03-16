@@ -1,13 +1,26 @@
 import useMovie from "@/hooks/useMovie";
+import useSeries from "@/hooks/useSeries";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const Watch = () => {
   const router = useRouter();
-  const { movieId } = router.query;
-  const { data } = useMovie(movieId as string);
+  const { movieId, type } = router.query;
+  const [data, setData] = useState<any>({});
   const [videoPlayerFocused, setVideoPlayerFocused] = useState(false);
+  const movieData = useMovie(movieId as string);
+  const seriesData = useSeries(movieId as string);
+
+  useEffect(() => {
+    if (type === "movie") {
+      // Use movieData
+      setData(movieData.data);
+    } else if (type === "series") {
+      // Use sreisData
+      setData(seriesData.data);
+    }
+  }, [type, movieId, movieData, seriesData]);
 
   return (
     <div className="h-screen w-screen bg-black">

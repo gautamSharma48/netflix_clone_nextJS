@@ -8,16 +8,17 @@ import { BiChevronDown } from "react-icons/bi";
 
 interface MovieCardProps {
   data: any;
+  type: string;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ data, type }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
   return (
     <div
       onClick={() => {
         if (window.matchMedia("(max-width: 768px)").matches) {
-          return openModal(data?.id);
+          return openModal(data?.id, type);
         }
       }}
       className="group bg-zinc-900 col-span relative  lg:h-[12vw]"
@@ -33,7 +34,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         top-0
          transition
           duration-200
-           z-10
+           z-20
             invisible
              sm:visible
               delay-300
@@ -53,14 +54,14 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row items-center gap-3">
             <div
-              onClick={() => router.push(`/watch/${data?.id}`)}
+              onClick={() => router.push(`/watch/${data?.id}/${type}`)}
               className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex items-center justify-center transition hover:bg-neutral-300"
             >
               <BsFillPlayFill size={30} />
             </div>
             <FavoriteButton movieId={data?.id} />
             <div
-              onClick={() => openModal(data?.id)}
+              onClick={() => openModal(data?.id, type)}
               className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex items-center justify-center transition hover:bg-neutral-300"
             >
               <BsChevronDown

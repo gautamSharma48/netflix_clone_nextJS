@@ -6,6 +6,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useFavorites from "@/hooks/useFavorites";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovieList from "@/hooks/useMovieList";
+import useSeriesList from "@/hooks/useSeriesList";
 import { NextPageContext } from "next";
 import { getSession, signOut } from "next-auth/react";
 
@@ -27,6 +28,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
 export default function Home() {
   const { data: movies = [] } = useMovieList();
+  const { data: series = [] } = useSeriesList();
   const { data: favorties = [] } = useFavorites();
   const { isOpen, closeModal } = useInfoModal();
   return (
@@ -35,8 +37,9 @@ export default function Home() {
       <Navbar />
       <BillBoard />
       <div className="pb-40">
-        <MovieList title="Trending Now" data={movies} />
-        <MovieList title="My List" data={favorties} />
+        <MovieList title="Trending Now" data={movies} type="movie" />
+        <MovieList title="My List" data={favorties} type="movie" />
+        <MovieList title="Series" data={series} type="series" />
       </div>
     </>
   );

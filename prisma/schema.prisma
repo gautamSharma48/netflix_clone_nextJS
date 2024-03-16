@@ -73,3 +73,13 @@ model Movie {
   duration     String
   videoUrl     String? @default("")
 }
+
+model Series {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  thumbnailUrl String
+  genre        String
+  duration     String
+  videoUrl     String? @default("")
+}
