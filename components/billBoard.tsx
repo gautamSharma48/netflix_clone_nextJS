@@ -15,7 +15,7 @@ const BillBoard = () => {
     <>
       <div className="relative h-[56.25vw] max-h-[600px] w-full">
         <video
-          className="w-full h-[56.25vw] max-h-[600px] object-cover brightness-[60%]"
+          className="w-full  h-[56.25vw] max-h-[600px] object-cover brightness-[60%]"
           src={data?.videoUrl}
           poster={data?.thumbnailUrl}
           autoPlay

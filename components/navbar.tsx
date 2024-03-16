@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchValue }) => {
       <div
         className={`${
           ShowBackground ? "bg-zinc-900 bg-opacity-90" : ""
-        } px-4 md:px-16 py-6 flex flex-row items-center transition duration-500`}
+        } px-2 md:px-16 py-6 flex flex-row items-center transition duration-500`}
       >
         <img src="/images/logo.png" className="h-4 lg:h-7" alt="logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
@@ -64,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchValue }) => {
         </div>
         <div
           onClick={() => setShowMobileNav(!showMobileNav)}
-          className="lg:hidden flex flex-wor items-center gap-2 ml-8 cursor-pointer relative"
+          className="lg:hidden flex flex-row items-center gap-2 ml-2 md:ml-8 cursor-pointer relative"
         >
           <p className="text-white text-sm">Browse</p>
           <BsChevronDown
@@ -74,11 +74,11 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchValue }) => {
           />
           <MobileMenu visible={showMobileNav} />
         </div>
-        <div className="flex flex-row ml-auto gap-7 items-center">
+        <div className="flex flex-row ml-auto md:gap-7 gap-3 items-center">
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <div
               onClick={() => setShowInput(true)}
-              className="w-full px-4 py-2 bg-zinc-800 rounded-md flex items-center transition duration-100 "
+              className="w-full px-2 py-1 md:px-4 md:py-2 bg-zinc-800 rounded-md flex items-center transition duration-100 "
             >
               {showSearchInput && (
                 <input

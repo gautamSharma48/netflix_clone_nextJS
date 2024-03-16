@@ -42,9 +42,12 @@ const MovieList: React.FC<MovieListProps> = ({ data, title = "", type }) => {
           <div className="absolute h-full z-10  transition -translate-x-[7.5]">
             <div
               onClick={() => handleIndexNavigator("prev")}
-              className="flex items-center justify-center h-full bg-zinc-800 brightness-80 cursor-pointer"
+              className="flex items-center justify-center h-full bg-zinc-800 brightness-80 cursor-pointer w-5 lg:w-auto"
             >
-              <FaCaretLeft className="text-white" size={30} />
+              <FaCaretLeft
+                className="text-white h-[18px] lg:h-[30px]"
+                size={30}
+              />
             </div>
           </div>
         ) : null}
@@ -53,12 +56,15 @@ const MovieList: React.FC<MovieListProps> = ({ data, title = "", type }) => {
           <MovieCard key={movie.id} data={movie} type={type} />
         ))}
         {data.length > 4 && endIndex < data.length ? (
-          <div className="absolute h-full z-10 right-0 transition translate-x-5 lg:translate-x-8">
+          <div className="absolute h-full z-10 right-0 transition translate-x-5 lg:translate-x-8 ">
             <div
               onClick={() => handleIndexNavigator("next")}
-              className="flex items-center justify-center h-full bg-zinc-800 brightness-80  cursor-pointer"
+              className="flex items-center justify-center h-full bg-zinc-800 brightness-80  cursor-pointer w-5 lg:w-auto"
             >
-              <FaCaretRight className="text-white" size={30} />
+              <FaCaretRight
+                className="text-white h-[18px] lg:h-auto"
+                size={30}
+              />
             </div>
           </div>
         ) : null}
