@@ -7,11 +7,16 @@ import AccountMenu from "./accountMenu";
 import { useRouter } from "next/router";
 const Top_Offset = 66;
 
-const Navbar = () => {
+interface NavbarProps {
+  setSearchValue: (value: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setSearchValue }) => {
   const router = useRouter();
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showAccountMenu, setAccountMenu] = useState(false);
   const [ShowBackground, SetShowBackground] = useState(false);
+  const [showSearchInput, setShowInput] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +76,21 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsSearch />
+            <div
+              onClick={() => setShowInput(true)}
+              className="w-full px-4 py-2 bg-zinc-800 rounded-md flex items-center transition duration-100 "
+            >
+              {showSearchInput && (
+                <input
+                  className="bg-transparent outline-none text-sm text-white h-full w-full transition duration-100"
+                  type="text"
+                  onChange={(event) => setSearchValue(event.target.value)}
+                  placeholder="Search movie and series"
+                ></input>
+              )}
+
+              <BsSearch size={18} />
+            </div>
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell />

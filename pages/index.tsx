@@ -9,6 +9,7 @@ import useMovieList from "@/hooks/useMovieList";
 import useSeriesList from "@/hooks/useSeriesList";
 import { NextPageContext } from "next";
 import { getSession, signOut } from "next-auth/react";
+import { useMemo, useState } from "react";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -31,15 +32,33 @@ export default function Home() {
   const { data: series = [] } = useSeriesList();
   const { data: favorties = [] } = useFavorites();
   const { isOpen, closeModal } = useInfoModal();
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredData = useMemo(() => {
+    const filterMovie = movies.filter((element: any) =>
+      element.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    const filterSeries = series.filter((element: any) =>
+      element.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    if (!filterMovie && !filterSeries) {
+      return { movies, series };
+    }
+    return { movies: filterMovie, series: filterSeries };
+  }, [movies, searchValue, series]);
   return (
     <>
       <InfoModal visible={isOpen} onClose={closeModal} />
-      <Navbar />
+      <Navbar setSearchValue={setSearchValue} />
       <BillBoard />
       <div className="pb-40">
-        <MovieList title="Trending Now" data={movies} type="movie" />
+        <MovieList
+          title="Trending Now"
+          data={filteredData?.movies}
+          type="movie"
+        />
         <MovieList title="My List" data={favorties} type="movie" />
-        <MovieList title="Series" data={series} type="series" />
+        <MovieList title="Series" data={filteredData.series} type="series" />
       </div>
     </>
   );
